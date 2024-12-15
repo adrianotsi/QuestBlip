@@ -1,9 +1,10 @@
 const express = require('express');
-const repositoriesRoutes = require('./routes/repositories.routes')
+const cors = require('cors');
+const repositoriesRoutes = require('./routes/repositories.routes');
 
 
 const app = express();
-
+app.use(cors())
 app.use(express.json());
 app.use('/repositories', repositoriesRoutes);
 app.get('/', (req, res) => {
