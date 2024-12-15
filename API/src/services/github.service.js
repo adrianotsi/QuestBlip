@@ -1,9 +1,17 @@
 const axios = require('axios')
+require('dotenv').config();
 
 const getOldestRepositories = async () => {
         try{
+            // Obtendo o token do arquivo .env
+            const token = process.env.GITHUB_TOKEN;
+
+            // Configurando o cabeçalho da requisição
+            const headers = {
+                Authorization: `token ${token}`
+            };
             //Requisição na API do Github
-            let {data} = await axios ('https://api.github.com/orgs/takenet/repos')
+            const { data } = await axios.get('https://api.github.com/orgs/takenet/repos', { headers });
             let repos = data
 
             //Filtrando os o resultado
